@@ -5,25 +5,18 @@
 }
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: black;
 }
 .container {
     width: 100%;
-    display: flex;
     justify-content: space-between;
     height: 100vh;
-    /* overflow-y: hidden; */
-}
-.container-half {
-    width: 50%;
 }
 .preview {
     padding: 1em;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, 1fr);
     gap: 1em;
-    width: 210mm;
-    overflow-y: scroll;
 }
 .adjustment {
     margin-left: 0.7em;
@@ -31,13 +24,17 @@ body {
 }
 .input-data {
     padding: 1em 2em;
-    /* height: 296mm; */
-    overflow: scroll;
+}
+.input-data .tag-data {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1em;
 }
 .preview .tag-data {
     border: 1px solid black;
-    height: 92mm;
-    padding: 0.7em 0;
+    /* height: 92mm; */
+    /* padding: 0.7em 0; */
+    margin: 0.2em 0;
 }
 .preview .tag-data .tag-header {
     text-align: center;
@@ -82,15 +79,28 @@ body {
     font-weight: 600;
     font-size: 1em;
 }
+.preview .po-ref {
+    text-align: center;
+    width: 100%;
+    margin: 0.5em 1em;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    /* justify-content: cent; */
+}
+.preview .po-ref p {
+    margin-right: 7px;
+}
 .preview .tag-credentials {
     /* background-color: blueviolet; */
     display: flex;
-    justify-content: space-between;
-    margin: 2em 1em 0 1em;
+    justify-content:space-between;
+    margin: 0.7em 1em 0 0em;
+    grid-column: 1/3;
 }
 .tag-credentials p {
     width: 50%;
-    text-align: right;
+    text-align: left;
     font-weight: 600;
 }
 .stamp-pushed {
@@ -103,7 +113,7 @@ body {
 .stamp-pushed .grid-continue {
     width: 80%;
     display: grid;
-    grid-template-columns: 1.5fr 3fr;
+    grid-template-columns: 1.35fr 3fr;
 }
 .stamp-pushed .insp-stamp {
     width: 85px;
@@ -112,10 +122,12 @@ body {
     text-align: center;
     display: flex;
     align-items: center;
+    padding: 1em;
 }
 .stamp-pushed .insp-stamp p {
     font-size: 1em;
     color: #000000a0;
+    /* text-align: center; */
 }
 .saveAsPdf {
     display: 100%;

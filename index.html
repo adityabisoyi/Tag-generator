@@ -16,8 +16,9 @@
                     <input type="text" oninput="setValue('part-1', 'tag-part-1')" id="part-1" placeholder="Part no.">
                     <input type="text" oninput="setValue('material-1', 'tag-material-1')" id="material-1" placeholder="Material">
                     <input type="text" oninput="setValue('batch-1', 'tag-batch-1')" id="batch-1" placeholder="Batch no.">
-                    <input type="date" oninput="setValue('mfg-1', 'tag-mfg-1')" id="mfg-1" placeholder="Mfg. Date">
-                    <input type="date" oninput="setValue('life-1', 'tag-life-1')" id="life-1" placeholder="Life Upto">
+                    <input type="text" oninput="setValue('mfg-1', 'tag-mfg-1')" id="mfg-1" placeholder="Mfg. Date" onfocus="(this.type='date')" onfocusout="(this.type='text')">
+                    <input type="text" oninput="setValue('life-1', 'tag-life-1')" id="life-1" placeholder="Life Upto" onfocus="(this.type='date')" onfocusout="(this.type='text')">
+                    <input type="text" oninput="setValue('post-office-1', 'tag-post-office-1')" id="post-office-1" placeholder="Purchase order number">
                 </div>
             </div>
             
@@ -28,13 +29,17 @@
             
             
             <div class="saveAsPdf">
-                <button onclick="saveAsPDF()">SAVE</button>
+                <button onclick="generatePDF()">SAVE</button>
 
             </div>
         </div>
 
         <div class="container-half preview" id="preview-page">
             <div class="tag-data">
+                <div class="po-ref">
+                    <p>Ref. P.O No. </p>
+                    <span id="tag-post-office-1"></span>
+                </div>
                 <div class="tag-header">
                     <h3>POLYMER <span class="adjustment">ENTERPRISES</span> <span class="adjustment">(NASIK)</span></h3>
                     <h3>(An ISO 9001-2015 Company)</h3>
@@ -48,33 +53,33 @@
                         <span id="tag-part-1">:</span>
                         <p>Material </p>
                         <span id="tag-material-1">:</span>
+                        <p>Batch no.</p>
+                        <span id="tag-batch-1">:</span>
                         <div class="stamp-pushed">
                             <div class="grid-continue">
-                                <p>Batch no.</p>
-                                <span id="tag-batch-1">:</span>
                                 <p>Mfg date. </p>
                                 <span id="tag-mfg-1">:</span>
                                 <p>Life upto </p>
                                 <span id="tag-life-1">:</span>
+                                <div class="tag-credentials" >
+                                    <p style="width: 70%;">Signature of Inspector</p>
+                                    <p>Date</p>
+                                </div>
                             </div>
                             <div class="insp-stamp">
-                                <p>Insp Stamp</p>
+                                <p>Insp <br/> Stamp</p>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="tag-credentials">
-                    <p>Signature of Inspector</p>
-                    <p style="padding-right: 2.5em;">Date</p>
                 </div>
             </div>
             
         </div>
     </div>
 
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js "></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+    <script src="script.js"></script>
 </body>
-<script src="script.js"></script>
+
 </html>
