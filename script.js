@@ -58,7 +58,7 @@ const addInputTag = (e) => {
                             <p>Life upto </p>
                             <span id="tag-life-${tagCount}">:</span>
                             <div class="tag-credentials">
-                                <p style="width: 90%;">Signature of Inspector</p>
+                                <p style="width: 90%;">Signature of <br> Inspector</p>
                                 <p>Date</p>
                             </div>
                         </div>
@@ -146,7 +146,7 @@ const addPrevTag = (e) => {
                             <p>Life upto </p>
                             <span id="tag-life-${tagCount}">: ${prevLife}</span>
                             <div class="tag-credentials">
-                                <p style="width: 90%;">Signature of Inspector</p>
+                                <p style="width: 90%;">Signature of <br> Inspector</p>
                                 <p>Date</p>
                             </div>
                         </div>

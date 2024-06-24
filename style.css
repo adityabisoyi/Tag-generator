@@ -74,6 +74,7 @@ body {
     grid-template-columns: 1fr 3fr;
     align-items: center;
     margin-top: 0.5em;
+    margin-bottom: 0.4em;
 }
 .preview .tag-preview-data p, span {
     margin: 0.2em 0;
@@ -96,7 +97,7 @@ body {
     /* background-color: blueviolet; */
     display: flex;
     justify-content:space-between;
-    margin: 0.7em 1em 0 0em;
+    margin: 0.4em 1em 0 0em;
     grid-column: 1/3;
 }
 .tag-credentials p {
