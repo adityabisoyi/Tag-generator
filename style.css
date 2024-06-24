@@ -34,7 +34,7 @@ body {
     border: 1px solid black;
     /* height: 92mm; */
     /* padding: 0.7em 0; */
-    margin: 0.2em 0;
+    /* margin: 0.2em 0; */
 }
 .preview .tag-data .tag-header {
     text-align: center;
@@ -73,16 +73,17 @@ body {
     display: grid;
     grid-template-columns: 1fr 3fr;
     align-items: center;
+    margin-top: 0.5em;
 }
 .preview .tag-preview-data p, span {
-    margin: 0.25em 0;
+    margin: 0.2em 0;
     font-weight: 600;
     font-size: 1em;
 }
 .preview .po-ref {
     text-align: center;
     width: 100%;
-    margin: 0.5em 1em;
+    margin: 0.3em 1em 0.2em 1em;
     font-weight: 600;
     display: flex;
     align-items: center;

@@ -19,6 +19,7 @@ const addInputTag = (e) => {
         <input type="text" oninput="setValue('part-${tagCount}', 'tag-part-${tagCount}')" id="part-${tagCount}" name="Product" placeholder="Part no.">
         <input type="text" oninput="setValue('material-${tagCount}', 'tag-material-${tagCount}')" id="material-${tagCount}" name="Product" placeholder="Material">
         <input type="text" oninput="setValue('batch-${tagCount}', 'tag-batch-${tagCount}')" id="batch-${tagCount}" name="Product" placeholder="Batch no.">
+        <input type="text" oninput="setValue('quantity-${tagCount}', 'tag-quantity-${tagCount}')" id="quantity-${tagCount}" name="Quantity" placeholder="Quantity.">
         <input type="text" oninput="setValue('mfg-${tagCount}', 'tag-mfg-${tagCount}')" id="mfg-${tagCount}" name="Product" placeholder="Mfg. Date" >
         <input type="text" oninput="setValue('life-${tagCount}', 'tag-life-${tagCount}')" id="life-${tagCount}" name="Product" placeholder="Life Upto" >
         <input type="text" oninput="setValue('post-office-${tagCount}', 'tag-post-office-${tagCount}')" id="post-office-${tagCount}" placeholder="Post office number">
@@ -48,6 +49,8 @@ const addInputTag = (e) => {
                     <span id="tag-material-${tagCount}">:</span>
                     <p>Batch no.</p>
                     <span id="tag-batch-${tagCount}">:</span>
+                    <p>Quantity.</p>
+                    <span id="tag-quantity-${tagCount}">:</span>
                     <div class="stamp-pushed">
                         <div class="grid-continue">
                             <p>Mfg. date </p>
@@ -55,7 +58,7 @@ const addInputTag = (e) => {
                             <p>Life upto </p>
                             <span id="tag-life-${tagCount}">:</span>
                             <div class="tag-credentials">
-                                <p style="width: 70%;">Signature of Inspector</p>
+                                <p style="width: 90%;">Signature of Inspector</p>
                                 <p>Date</p>
                             </div>
                         </div>
@@ -83,6 +86,7 @@ const addPrevTag = (e) => {
     const prevProduct = document.getElementById(`product-${tagCount-1}`).value
     const prevMaterial = document.getElementById(`material-${tagCount-1}`).value
     const prevBatch = document.getElementById(`batch-${tagCount-1}`).value
+    const prevQuantity = document.getElementById(`quantity-${tagCount-1}`).value
     const prevPart = document.getElementById(`part-${tagCount-1}`).value
     const prevMfg = document.getElementById(`mfg-${tagCount-1}`).value
     const prevLife = document.getElementById(`life-${tagCount-1}`).value
@@ -100,6 +104,8 @@ const addPrevTag = (e) => {
         <input type="text" value="${prevMaterial}" oninput="setValue('material-${tagCount}', 'tag-material-${tagCount}')" id="material-${tagCount}" name="Product" placeholder="Material">
         
         <input type="text" value="${prevBatch}" oninput="setValue('batch-${tagCount}', 'tag-batch-${tagCount}')" id="batch-${tagCount}" name="Product" placeholder="Batch no.">
+
+        <input type="text" value="${prevQuantity}" oninput="setValue('quantity-${tagCount}', 'tag-quantity-${tagCount}')" id="quantity-${tagCount}" name="Quantity" placeholder="Quantity.">
         
         <input type="text" value="${prevMfg}" oninput="setValue('mfg-${tagCount}', 'tag-mfg-${tagCount}')" id="mfg-${tagCount}" name="Product" placeholder="Mfg. Date" >
         
@@ -131,6 +137,8 @@ const addPrevTag = (e) => {
                     <span id="tag-material-${tagCount}">: ${prevMaterial}</span>
                     <p>Batch no. </p>
                     <span id="tag-batch-${tagCount}">: ${prevBatch}</span>
+                    <p>Quantity.</p>
+                    <span id="tag-quantity-${tagCount}">:</span>
                     <div class="stamp-pushed">
                         <div class="grid-continue">
                             <p>Mfg. date </p>
@@ -138,7 +146,7 @@ const addPrevTag = (e) => {
                             <p>Life upto </p>
                             <span id="tag-life-${tagCount}">: ${prevLife}</span>
                             <div class="tag-credentials">
-                                <p style="width: 70%;">Signature of Inspector</p>
+                                <p style="width: 90%;">Signature of Inspector</p>
                                 <p>Date</p>
                             </div>
                         </div>
