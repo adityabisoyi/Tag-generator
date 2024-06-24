@@ -14,12 +14,13 @@ const addInputTag = (e) => {
 
     inputTag.innerHTML = `
         <h2>Tag no. ${tagCount}</h2>
+
         <input type="text" oninput="setValue('product-${tagCount}', 'tag-Product-${tagCount}')" id="product-${tagCount}" name="Product" placeholder="Product">
         <input type="text" oninput="setValue('part-${tagCount}', 'tag-part-${tagCount}')" id="part-${tagCount}" name="Product" placeholder="Part no.">
         <input type="text" oninput="setValue('material-${tagCount}', 'tag-material-${tagCount}')" id="material-${tagCount}" name="Product" placeholder="Material">
         <input type="text" oninput="setValue('batch-${tagCount}', 'tag-batch-${tagCount}')" id="batch-${tagCount}" name="Product" placeholder="Batch no.">
-        <input type="text" oninput="setValue('mfg-${tagCount}', 'tag-mfg-${tagCount}')" id="mfg-${tagCount}" name="Product" placeholder="Mfg. Date" onfocus="(this.type='date')" onfocusout="(this.type='text')">
-        <input type="text" oninput="setValue('life-${tagCount}', 'tag-life-${tagCount}')" id="life-${tagCount}" name="Product" placeholder="Life Upto" onfocus="(this.type='date')" onfocusout="(this.type='text')">
+        <input type="text" oninput="setValue('mfg-${tagCount}', 'tag-mfg-${tagCount}')" id="mfg-${tagCount}" name="Product" placeholder="Mfg. Date" >
+        <input type="text" oninput="setValue('life-${tagCount}', 'tag-life-${tagCount}')" id="life-${tagCount}" name="Product" placeholder="Life Upto" >
         <input type="text" oninput="setValue('post-office-${tagCount}', 'tag-post-office-${tagCount}')" id="post-office-${tagCount}" placeholder="Post office number">
     `
 
@@ -100,11 +101,11 @@ const addPrevTag = (e) => {
         
         <input type="text" value="${prevBatch}" oninput="setValue('batch-${tagCount}', 'tag-batch-${tagCount}')" id="batch-${tagCount}" name="Product" placeholder="Batch no.">
         
-        <input type="date" value="${prevMfg}" oninput="setValue('mfg-${tagCount}', 'tag-mfg-${tagCount}')" id="mfg-${tagCount}" name="Product" placeholder="Mfg. Date" onfocus="(this.type='date')" onfocusout="(this.type='text')">
+        <input type="text" value="${prevMfg}" oninput="setValue('mfg-${tagCount}', 'tag-mfg-${tagCount}')" id="mfg-${tagCount}" name="Product" placeholder="Mfg. Date" >
         
-        <input type="date" value="${prevLife}" oninput="setValue('life-${tagCount}', 'tag-life-${tagCount}')" id="life-${tagCount}" name="Product" placeholder="Life Upto" onfocus="(this.type='date')" onfocusout="(this.type='text')">
+        <input type="text" value="${prevLife}" oninput="setValue('life-${tagCount}', 'tag-life-${tagCount}')" id="life-${tagCount}" name="Product" placeholder="Life Upto" >
         
-        <input type="text" value=${prevPO} oninput="setValue('post-office-${tagCount}', 'tag-post-office-${tagCount}')" id="post-office-${tagCount}" placeholder="Post office number">
+        <input type="text" value="${prevPO}" oninput="setValue('post-office-${tagCount}', 'tag-post-office-${tagCount}')" id="post-office-${tagCount}" placeholder="Post office number">
     `
 
     inputParent.appendChild(inputTag)
@@ -189,5 +190,19 @@ function generatePDF() {
     html2pdf().set(opt).from(element).save();
 }
 
+const delTag = () => {
+    const inputParent = document.getElementById('input-tab')
+    const outputParent = document.getElementById('preview-page')
+    console.log(inputParent.children.length)
+    if(inputParent.children.length === 1) {
+        alert("Cannot delete the first tag")
+        return
+    } else {
+        tagCount--;
+        console.log(inputParent.children[inputParent.children.length-1])
+        console.log(outputParent.children[outputParent.children.length-1])
 
-
+        inputParent.removeChild(inputParent.children[inputParent.children.length-1])
+        outputParent.removeChild(outputParent.children[outputParent.children.length-1])
+    }
+}
