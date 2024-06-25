@@ -92,7 +92,7 @@ const addPrevTag = (e) => {
     const prevLife = document.getElementById(`life-${tagCount-1}`).value
     const prevPO = document.getElementById(`post-office-${tagCount-1}`).value
 
-    console.log(prevBatch, prevLife, prevMaterial, prevMfg, prevProduct, prevPart, prevPO)
+    console.log(prevBatch, prevLife, prevMaterial, prevMfg, prevProduct, prevPart, prevPO, prevQuantity)
 
     inputTag.innerHTML += `
         <h2>Tag no. ${tagCount}</h2>
@@ -138,7 +138,7 @@ const addPrevTag = (e) => {
                     <p>Batch no. </p>
                     <span id="tag-batch-${tagCount}">: ${prevBatch}</span>
                     <p>Quantity.</p>
-                    <span id="tag-quantity-${tagCount}">:</span>
+                    <span id="tag-quantity-${tagCount}">: ${prevQuantity}</span>
                     <div class="stamp-pushed">
                         <div class="grid-continue">
                             <p>Mfg. date </p>
