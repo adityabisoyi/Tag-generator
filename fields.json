@@ -1,0 +1,31 @@
+{
+    "tag-content": [
+        {
+            "full-width": [
+                "Product",
+                "Part No.",
+                "Material",
+                "Quantity",
+                "Batch No."
+            ]
+        },
+        {
+            "split-text": [
+                "Rubber Comp: Mixing Date",
+                "& Life Upto"
+            ]
+        },
+        {
+            "stamp-side": [
+                "Mfg. Date",
+                "Life Upto"
+            ]
+        },
+        {
+            "footer": [
+                "Signature of Inspector",
+                "Date"
+            ]
+        }
+    ] 
+}
