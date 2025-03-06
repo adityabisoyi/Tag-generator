@@ -132,6 +132,7 @@ const handleCopy = () => {
     addControlButtons()
 }
 
+
 const handleDelete = (event) => {
     const tags = document.querySelectorAll('.tag')
     if(tags.length <= 1) {
@@ -148,6 +149,57 @@ const handleDelete = (event) => {
 
 readJson()
 
-const downloadDocx = () => {
-    console.log("Download button")
-} 
+// const addPageBreaks = () => {
+//     const mainBody = document.getElementById('MainBody');
+//     const tags = mainBody.querySelectorAll('.tag');
+
+//     // First remove any old page breaks (in case you call this multiple times)
+//     mainBody.querySelectorAll('.page-break').forEach(breakEl => breakEl.remove());
+
+//     tags.forEach((tag, index) => {
+//         if ((index + 1) % 4 === 0) {
+//             const pageBreak = document.createElement('div');
+//             pageBreak.classList.add('page-break');
+//             mainBody.insertBefore(pageBreak, tag.nextSibling);  // Add after every 4th tag
+//         }
+//     });
+// }
+
+const hideDeleteButton = (hideFlag) => {
+    const deleteIcons = document.querySelectorAll('.delete-icon');
+    deleteIcons.forEach(icon => {
+        if(hideFlag) {
+            icon.classList.add('hide-delete');
+        } else {
+            icon.classList.remove('hide-delete');
+        }
+    });
+}
+
+const downloadDocx = async () => {
+    const element = document.getElementById('container');
+    // const element = document.getElementById('MainBody');
+    removeControlButtons()
+    hideDeleteButton(true)
+    // addPageBreaks()
+
+    const options = {
+        margin: 0,
+        filename: 'FullScreenDocument.pdf',
+        image: { type: 'jpeg', quality: 1 },
+        html2canvas: {
+            scale: 2
+        },
+        jsPDF: {
+            unit: 'mm',
+            format: [210, 297],
+            orientation: 'landscape'
+        },
+        // pagebreak: { mode: ['css', 'legacy'] },
+        // enableLinks: true
+    };
+
+    await html2pdf().set(options).from(element).save();
+    addControlButtons()
+    hideDeleteButton(false)
+}; 

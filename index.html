@@ -5,47 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/html-to-docx@0.4.0/lib/index.min.js"></script>
 </head>
 <body>
-    <div id="MainBody" class="main-body">
-        <div class="tag">
-            <span class="material-symbols-outlined delete-icon icon" onclick="handleDelete(event)">
-                delete
-            </span>
-            <div class="tag-header">
-                <div class="reference-no">
-                    <p>Ref P.O No.</p>
-                    <input type="text">
-                    <p>Date</p>
-                    <input type="text">
-                </div>
-                <h3>POLYMER ENTERPRISES (NASIK)</h3>
-                <h4>(An ISO 9001-2015 Company)</h4>
-                <h3>ACCEPTED</h3>
-            </div>
-            <div class="tag-content">
-                <div id="FullWidth" class="full-width"></div>
-                <div id="SplitText" class="split-text"></div>
-                <div id="StampSplit" class="stamp-split">
-                    <div>
-                        <div id="StampFields" class="stamp-fields"></div>
-                        <div id="StampFooter" class="stamp-footer"></div>
+    <div id="container" class="container">
+        <div id="MainBody" class="main-body">
+            <div class="tag">
+                <span class="material-symbols-outlined delete-icon icon" onclick="handleDelete(event)">
+                    delete
+                </span>
+                <div class="tag-header">
+                    <div class="reference-no">
+                        <p>Ref P.O No.</p>
+                        <input type="text">
+                        <p>Date</p>
+                        <input type="text">
                     </div>
-                    <div class="stamp-box">
-                        <p>Insp <br> Stamp</p>
+                    <h3>POLYMER ENTERPRISES (NASIK)</h3>
+                    <h4>(An ISO 9001-2015 Company)</h4>
+                    <h4>ACCEPTED</h4>
+                </div>
+                <div class="tag-content">
+                    <div id="FullWidth" class="full-width"></div>
+                    <div id="SplitText" class="split-text"></div>
+                    <div id="StampSplit" class="stamp-split">
+                        <div>
+                            <div id="StampFields" class="stamp-fields"></div>
+                            <div id="StampFooter" class="stamp-footer"></div>
+                        </div>
+                        <div class="stamp-box">
+                            <p>Insp <br> Stamp</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
     <script src="script.js"></script>
-    <script>
-        function downloadDocx() {
-            exportDivToDocxWithCSS('MainBody', [
-                'styles.css'
-            ], 'StyledDocument.docx');
-        }
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html-docx-js/0.3.1/html-docx.js"></script>
 </body>
 </html>
