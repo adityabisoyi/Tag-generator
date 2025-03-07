@@ -7,8 +7,6 @@ const defaultBody = `
             <div class="reference-no">
                 <p>Ref P.O. No. :</p>
                 <input type="text">
-                <p>Date</p>
-                <input type="text">
             </div>
             <h3>POLYMER ENTERPRISES (NASIK)</h3>
             <h4>(An ISO 9001-2015 Company)</h4>
