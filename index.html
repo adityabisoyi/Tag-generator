@@ -9,6 +9,11 @@
 </head>
 <body>
     <div id="container" class="container">
+        <div class="tag-selector">
+            <button class="tag-type top-btns" onclick="readJson(1)">Tag 1</button>
+            <button class="tag-type top-btns" onclick="readJson(2)">Tag 2</button>
+            <button id="ResetButton" class="reset-tags top-btns" onclick="handleReset()">Reset</button>
+        </div>
         <div id="MainBody" class="main-body">
             <div class="tag">
                 <span class="material-symbols-outlined delete-icon icon" onclick="handleDelete(event)">
@@ -16,7 +21,7 @@
                 </span>
                 <div class="tag-header">
                     <div class="reference-no">
-                        <p>Ref P.O No.</p>
+                        <p>Ref P.O. No. :</p>
                         <input type="text">
                         <p>Date</p>
                         <input type="text">

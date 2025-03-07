@@ -1,30 +1,84 @@
-// const fs = require('fs')
+const defaultBody = `
+    <div class="tag">
+        <span class="material-symbols-outlined delete-icon icon" onclick="handleDelete(event)">
+            delete
+        </span>
+        <div class="tag-header">
+            <div class="reference-no">
+                <p>Ref P.O. No. :</p>
+                <input type="text">
+                <p>Date</p>
+                <input type="text">
+            </div>
+            <h3>POLYMER ENTERPRISES (NASIK)</h3>
+            <h4>(An ISO 9001-2015 Company)</h4>
+            <h4>ACCEPTED</h4>
+        </div>
+        <div class="tag-content">
+            <div id="FullWidth" class="full-width"></div>
+            <div id="SplitText" class="split-text"></div>
+            <div id="StampSplit" class="stamp-split">
+                <div>
+                    <div id="StampFields" class="stamp-fields"></div>
+                    <div id="StampFooter" class="stamp-footer"></div>
+                </div>
+                <div class="stamp-box">
+                    <p>Insp <br> Stamp</p>
+                </div>
+            </div>
+        </div>
+    </div>
+`
 
-const readJson = async () => {
+const readJson = async (type) => {
     try {
-        const response = await fetch('./fields.json');  // path relative to your HTML file
+        const response = await fetch('./fields.json');
         const JsonData = await response.json();
-        initializeHTML(JsonData['tag-content'])
+
+        disableType()
+        initializeHTML(JsonData['tag-content'], type)
         
     } catch (error) {
         console.error("Error while parsing or reading: ", error)       
     }
 }
 
-const initializeHTML = (tagContent) => {
+const disableType = () => {
+    const selectors = document.querySelectorAll('.tag-type')
+
+    selectors.forEach(button => {
+        button.disabled = true;
+    });
+}
+
+const handleReset = () => {
+    const mainBody = document.getElementById('MainBody')
+    mainBody.innerHTML = defaultBody;
+    
+    const selectors = document.querySelectorAll('.tag-type')
+    selectors.forEach(button => {
+        button.disabled = false;
+    });
+}
+
+const initializeHTML = (tagContent, type) => {
     const HTMLFullWidthParent = document.getElementById('FullWidth')
-    const HTMLSplitTextParent = document.getElementById('SplitText')
-    const HTMLStampTextParent = document.getElementById('StampFields')
-    const HTMLStampFooterParent = document.getElementById('StampFooter')
-
     const fullWidth = extractArraysByKey(tagContent, "full-width");
-    const splitText = extractArraysByKey(tagContent, "split-text");
-    const stampText = extractArraysByKey(tagContent, "stamp-side");
-    const footerText = extractArraysByKey(tagContent, "footer");
-
     mapFullWidth(HTMLFullWidthParent, fullWidth)
+
+    if(type === 2) {
+        const HTMLSplitTextParent = document.getElementById('SplitText')
+        const splitText = extractArraysByKey(tagContent, "split-text");
+        mapSplitText(HTMLSplitTextParent, splitText, true)
+    }
+
+    
+    const HTMLStampTextParent = document.getElementById('StampFields')
+    const stampText = extractArraysByKey(tagContent, "stamp-side");
     mapFullWidth(HTMLStampTextParent, stampText)
-    mapSplitText(HTMLSplitTextParent, splitText, true)
+    
+    const HTMLStampFooterParent = document.getElementById('StampFooter')
+    const footerText = extractArraysByKey(tagContent, "footer");
     mapSplitText(HTMLStampFooterParent, footerText, false)
 
     addControlButtons()
@@ -40,8 +94,11 @@ const mapFullWidth = (HTMLFullWidthParent, fieldArray) => {
         const div = document.createElement('div')
         const p = document.createElement('p');
         const input = document.createElement('input');
+        const span = document.createElement('span')
         p.textContent = item;
+        span.textContent = ":"
         div.appendChild(p);
+        div.appendChild(span);
         div.appendChild(input);
         HTMLFullWidthParent.appendChild(div);
     });
@@ -147,23 +204,7 @@ const handleDelete = (event) => {
     }
 }
 
-readJson()
-
-// const addPageBreaks = () => {
-//     const mainBody = document.getElementById('MainBody');
-//     const tags = mainBody.querySelectorAll('.tag');
-
-//     // First remove any old page breaks (in case you call this multiple times)
-//     mainBody.querySelectorAll('.page-break').forEach(breakEl => breakEl.remove());
-
-//     tags.forEach((tag, index) => {
-//         if ((index + 1) % 4 === 0) {
-//             const pageBreak = document.createElement('div');
-//             pageBreak.classList.add('page-break');
-//             mainBody.insertBefore(pageBreak, tag.nextSibling);  // Add after every 4th tag
-//         }
-//     });
-// }
+// readJson()
 
 const hideDeleteButton = (hideFlag) => {
     const deleteIcons = document.querySelectorAll('.delete-icon');
@@ -177,11 +218,11 @@ const hideDeleteButton = (hideFlag) => {
 }
 
 const downloadDocx = async () => {
-    const element = document.getElementById('container');
-    // const element = document.getElementById('MainBody');
+    const element = document.getElementById('MainBody');
+    // const element = document.getElementById('container');
     removeControlButtons()
     hideDeleteButton(true)
-    // addPageBreaks()
+    // groupTagsIntoPages()
 
     const options = {
         margin: 0,
@@ -195,11 +236,11 @@ const downloadDocx = async () => {
             format: [210, 297],
             orientation: 'landscape'
         },
-        // pagebreak: { mode: ['css', 'legacy'] },
-        // enableLinks: true
+        // pagebreak: { mode: ['css', 'legacy'] }
     };
 
     await html2pdf().set(options).from(element).save();
     addControlButtons()
     hideDeleteButton(false)
 }; 
+
