@@ -30,6 +30,23 @@ const defaultBody = `
     </div>
 `
 
+const controlButtonHTML = `
+    <div>
+        <span id="AddButton" class="material-symbols-outlined AddButton icon" onclick="handleAdd()">
+            add
+        </span>
+        <span id="CopyButton" class="material-symbols-outlined CopyButton icon" onclick="handleCopy()">
+            content_copy
+        </span>
+        <span id="DownloadButton" class="material-symbols-outlined DownloadButton icon" onclick="downloadDocx()">
+            download
+        </span>
+    </div>
+    <div>
+        <input id="FileName" placeholder="Please enter filename"/>
+    </div>
+`
+
 const readJson = async (type) => {
     try {
         const response = await fetch('./fields.json');
@@ -134,17 +151,7 @@ const addControlButtons = () => {
     const mainBody = document.getElementById('MainBody')
     const div = document.createElement('div')
     div.classList.add('control-buttons')
-    div.innerHTML = `
-        <span id="AddButton" class="material-symbols-outlined AddButton icon" onclick="handleAdd()">
-            add
-        </span>
-        <span id="CopyButton" class="material-symbols-outlined CopyButton icon" onclick="handleCopy()">
-            content_copy
-        </span>
-        <span id="DownloadButton" class="material-symbols-outlined DownloadButton icon" onclick="downloadDocx()">
-            download
-        </span>
-    `
+    div.innerHTML = controlButtonHTML
 
     mainBody.append(div)
 }
@@ -204,7 +211,6 @@ const handleDelete = (event) => {
     }
 }
 
-// readJson()
 
 const hideDeleteButton = (hideFlag) => {
     const deleteIcons = document.querySelectorAll('.delete-icon');
@@ -217,16 +223,19 @@ const hideDeleteButton = (hideFlag) => {
     });
 }
 
+
 const downloadDocx = async () => {
     const element = document.getElementById('MainBody');
-    // const element = document.getElementById('container');
+    let fileName = document.getElementById('FileName').value;
+    if(fileName === null || fileName.trim() === '') {
+        fileName = "SHOE30"
+    }
     removeControlButtons()
     hideDeleteButton(true)
-    // groupTagsIntoPages()
 
     const options = {
         margin: 0,
-        filename: 'FullScreenDocument.pdf',
+        filename: fileName + ".pdf",
         image: { type: 'jpeg', quality: 1 },
         html2canvas: {
             scale: 2
