@@ -135,11 +135,12 @@ html, body {
     border: 2px solid black;
     position: relative;
     page-break-inside: avoid;
-    height: 380px;
+    height: 375px;
+    margin-bottom: 6px;
 }
 .tag-header {
     text-align: center;
-    margin: 0.3em 1em;
+    margin: 0 1em 0.3em 1em;
     margin-bottom: 0;
 }
 .tag-content {
